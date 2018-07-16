@@ -1,58 +1,7 @@
-class Player
-  attr_accessor :name, :lives
-  def initialize (name, lives)
-    @name = name
-    @lives = lives
-  end
-
-  def update_lives(update)
-    @lives += update
-  end
-end
-
-class Question
-  attr_accessor :a, :b
-  def initialize
-    @a = rand(1..20)
-    @b = rand(1..20)
-  end
-
-  def sum
-    @a + @b
-  end
-
-  def check_answer(input)
-    input == self.sum
-  end
-
-  def ask_question
-    "What does #{@a} plus #{@b} equal?"
-  end
-
-end
-
-class TurnManager
-  attr_accessor :players
-  def initialize(players)
-    @players = players.clone
-  end
-
-  def current_player
-    @players[0]
-  end
-
-  def rotate_players
-    @players.rotate!
-  end
-end
-
-class Turn
-  attr_accessor :player, :question
-  def initialize(player)
-    @player = player
-    @question = Question.new
-  end
-end
+require './player.rb'
+require './question.rb'
+require './turn.rb'
+require './turn_manager.rb'
 
 class Game
   def initialize(total_lives)
@@ -108,9 +57,6 @@ class Game
 
 end
 
-my_game = Game.new(3)
-
-my_game.play_game
 
 
 
